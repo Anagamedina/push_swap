@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:41:18 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/31 18:26:05 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:10:10 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,28 @@ static int	quantity_elements_tail(t_stack **stack_a)
 	return (count);
 }*/
 
+/*static t_stack *find_median(t_stack *stack)
+{
+    int median;
+    int count;
+    t_stack *min_num;
+
+    int size = stack_len(stack);  // Calcular el tamaño de la lista
+    median = (size - 1) / 2;
+    count = 1;
+    min_num = NULL;
+
+    while (count <= median)
+    {
+        min_num = find_value_min(stack);
+        count++;
+    }
+    return (min_num);
+}*/
+
 void	move_elements_to_b(t_stack **stack_a, t_stack **stack_b)
 {
-	int	len_a;
+	int		len_a;
 
 	// int	nums_parte_1_stack = quantity_elements_head(stack_a);
 	// int nums_parte_2_stack = quantity_elements_tail(stack_a);
@@ -96,8 +115,6 @@ void	move_elements_to_b(t_stack **stack_a, t_stack **stack_b)
 	while (len_a > 3)
 	{
 		pb(stack_b, stack_a);
-		//if ((*stack_b)->index < 0)
-			//rb(stack_b);
 		len_a--;
 	}
 	len_a = stack_len(*stack_a);
