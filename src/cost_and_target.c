@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   cost_and_target.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:43:20 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/30 16:52:50 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:15:16 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,25 @@ void	set_target_node(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void set_price(t_stack *stack_a, t_stack *stack_b)
+void	set_price(t_stack *stack_a, t_stack *stack_b)
 {
-    int l_a = stack_len(stack_a);
-    int len_b = stack_len(stack_b);
+	int	l_a;
+	int	len_b;
 
-    while (stack_b)
-    {
-        // Inicializar el costo de empuje
-        stack_b->push_cost = stack_b->index;
-
-        // Ajustar el costo basado en la posición relativa
-        if (stack_b->index < 0)
-            stack_b->push_cost = len_b + stack_b->index;
-
-        // Ajustar el costo con respecto al nodo objetivo
-        if (stack_b->target_node->index >= 0)
-            stack_b->push_cost += stack_b->target_node->index;
-        else
-            stack_b->push_cost += l_a + stack_b->target_node->index;
-
-        stack_b = stack_b->next;
-    }
+	l_a = stack_len(stack_a);
+	len_b = stack_len(stack_b);
+	while (stack_b)
+	{
+		stack_b->push_cost = stack_b->index;
+		if (stack_b->index < 0)
+			stack_b->push_cost = len_b + stack_b->index;
+		if (stack_b->target_node->index >= 0)
+			stack_b->push_cost += stack_b->target_node->index;
+		else
+			stack_b->push_cost += l_a + stack_b->target_node->index;
+		stack_b = stack_b->next;
+	}
 }
-
 
 t_stack	*find_cheapest_node(t_stack *stack_b)
 {

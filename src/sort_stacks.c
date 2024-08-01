@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 10:12:55 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/30 16:20:40 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:51:34 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,45 @@
 
 void	sort_stacks(t_stack **stack_a, t_stack **stack_b)
 {
+	t_stack	*cheapest;
+
+	//printf("ANTES DE MOVE_ELEMENTS_TO_B\n");
+	// print_stacks_x(*stack_a, *stack_b);
 	move_elements_to_b(stack_a, stack_b);
+	// printf("-----------------------------\n");
+	// printf("DESPUES DE MOVE_ELEMENTS_TO_B\n");
+	// print_stacks_x(*stack_a, *stack_b);
+	// int	i = 0;
+	// while (*stack_b && i == 3)
 	while (*stack_b)
 	{
-		t_stack	*best_index;
+		// printf("---------------------\n");
+		// printf("ITERACION I: %i \n", i);
+		// printf("---------------------\n");
+
+		// printf("ASSIGN INDEX A: \n");
 		assign_index(*stack_a);
+		// print_stacks_x(*stack_a, *stack_b);
+		
+		// printf("---------------------\n");
+		// printf("ASSIGN INDEX B: \n");
 		assign_index(*stack_b);
+		// print_stacks_x(*stack_a, *stack_b);
+		// printf("---------------------\n");
+
 		set_target_node(*stack_a, *stack_b);
 		set_price(*stack_a, *stack_b);
-		best_index = find_cheapest_node(*stack_b);
-		if (best_index->index > 0 && best_index->target_node->index > 0)
-			handle_positive_positions(stack_a, stack_b, best_index);
-		else if (best_index->index < 0 && best_index->target_node->index < 0)
-			handle_negative_positions(stack_a, stack_b, best_index);
-		else
-			handle_mixed_positions(stack_a, stack_b, best_index);
+		cheapest = find_cheapest_node(*stack_b);
+		//if (cheapest->index > 0 && cheapest->target_node->index > 0)
+		handle_pos(stack_a, stack_b, cheapest);
+		//else if (cheapest->index < 0 && cheapest->target_node->index < 0)
+		handle_neg(stack_a, stack_b, cheapest);
+		//else
+		handle_mix(stack_a, stack_b, cheapest);
 		pa(stack_a, stack_b);
+		// i++;
 	}
+	//exit(0);
 	assign_index(*stack_a);
 	top_smaller_node(stack_a);
 }
-
-
-/*void	sort_stacks(t_stack **stack_a, t_stack **stack_b)
-{
-	move_elements_to_b(stack_a, stack_b);
-	while (*stack_b)
-	{
-		//set_current_position(*stack_a);
-		//set_current_position(*stack_b);
-		assign_index(*stack_a);
-		assign_index(*stack_b);
-		set_target_node(*stack_a, *stack_b);
-		set_price(*stack_a, *stack_b);
-		move_cheapest_to_a(stack_a, stack_b);
-	}
-	assign_index(*stack_a);
-	//set_current_position(*stack_a);
-	top_smaller_node(stack_a);
-}*/

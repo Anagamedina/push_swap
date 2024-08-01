@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:38:57 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/30 17:07:00 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:30:25 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_stack	*new_node(int value)
 		return (NULL);
 	node->value = value;
 	node->index = -1;
-	//node->above_median = 0;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -38,13 +37,35 @@ void	append_node(t_stack **stack, int value)
 	if (!(*stack))
 	{
 		*stack = node;
-		//node->prev = NULL;
 	}
 	else
 	{
 		last_node = find_last_node(*stack);
 		last_node->next = node;
 		node->prev = last_node;
+	}
+}
+
+void	assign_index(t_stack *stack)
+{
+	t_stack		*current;
+	int			i;
+	int			size;
+
+	i = 0;
+	size = stack_len(stack);
+	current = stack;
+	while (current->next && i < (size / 2))
+	{
+		current->index = i;
+		current = current->next;
+		i++;
+	}
+	while (current)
+	{
+		current->index = i - size;
+		current = current->next;
+		i++;
 	}
 }
 

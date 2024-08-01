@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   move_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:41:18 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/30 17:06:12 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:26:05 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,70 @@ void	tiny_sort(t_stack **stack_a)
 		ra(stack_a);
 	}
 }
+/*
+static int	quantity_elements_head(t_stack **stack_a)
+{
+	int	len;
+	int	i;
+	int count;
+	t_stack	*current;
+	
+	count = 0;
+	i = 0;
+	len = stack_len(*stack_a) / 2;
+	current = (*stack_a);
+	while (i < len)
+	{
+		if (current->index < 0)
+			count++;
+		i++;
+		current = current->next;
+	}
+	return (count);
+}
+
+static int	quantity_elements_tail(t_stack **stack_a)
+{
+	int	len;
+	int	i;
+	int count;
+	t_stack	*current;
+	
+	count = 0;
+	i = stack_len(*stack_a) - 1;
+	len = stack_len(*stack_a) / 2;
+	current = find_last_node(*stack_a);
+	while (i >= len)
+	{
+		if (current->index < 0)
+			count++;
+		i--;
+		current = current->prev;
+	}
+	return (count);
+}*/
 
 void	move_elements_to_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len_a;
 
+	// int	nums_parte_1_stack = quantity_elements_head(stack_a);
+	// int nums_parte_2_stack = quantity_elements_tail(stack_a);
+	//printf("LEN STACK A: %d\n", stack_len(*stack_a) / 2);
+	//printf("CANTIDAD NUMEROS NEGATIVOS/FLAG EN PARTE 1 STACK A: %d\n", nums_parte_1_stack);
+	//printf("CANTIDAD NUMEROS NEGATIVOS/FLAG EN PARTE 2 STACK A: %d\n", nums_parte_2_stack);
 	len_a = stack_len(*stack_a);
 	while (len_a > 3)
 	{
 		pb(stack_b, stack_a);
-		//como hago el RA
+		//if ((*stack_b)->index < 0)
+			//rb(stack_b);
 		len_a--;
 	}
 	len_a = stack_len(*stack_a);
 	if (len_a == 3)
 		tiny_sort(stack_a);
 }
-
-
 
 void	top_smaller_node(t_stack **stack_a)
 {

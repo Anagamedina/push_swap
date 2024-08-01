@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:49:04 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/30 17:04:56 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:29:28 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,50 +92,3 @@ t_stack	*find_value_max(t_stack *stack)
 	}
 	return (max_node);
 }
-
-void assign_index(t_stack *stack)
-{
-	t_stack		*current;
-	int			i;
-	int			size;
-
-	i = 0;
-	size = stack_len(stack);
-	current = stack;
-	while (current->next && i<= (size / 2))
-	{
-		current->index = i;
-		current = current->next;
-		i++;
-	}
-	while (current)
-	{
-		current->index = i - size;
-		current = current->next;
-		i++;
-	}
-}
-/*void assign_index(t_stack *stack)
-{
-    int size = stack_len(stack);
-    int half_size = size / 2;
-    int i = 0;
-    t_stack *current = stack;
-
-    // Asignar índices positivos
-    while (current && i < half_size)
-    {
-        current->index = i;
-        current = current->next;
-        i++;
-    }
-
-    // Asignar índices negativos
-    while (current)
-    {
-        current->index = -(size - i);
-        current = current->next;
-        i++;
-    }
-}*/
-

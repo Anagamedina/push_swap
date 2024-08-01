@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:05:56 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/30 17:12:15 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:21:12 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void		set_price(t_stack *a, t_stack *b);
 void		top_smaller_node(t_stack **stack_a);
 t_stack		*find_cheapest_node(t_stack *stack_b);
 //t_stack		*find_median(t_stack *stack);
-void		handle_mixed_positions(t_stack **stack_a, t_stack **stack_b, t_stack *best_index);
-void		handle_negative_positions(t_stack **stack_a, t_stack **stack_b, t_stack	*best_index);
-void		handle_positive_positions(t_stack **stack_a, t_stack **stack_b, t_stack *best_index);
+void		handle_mix(t_stack **stack_a, t_stack **stack_b, t_stack *cheapest);
+void		handle_neg(t_stack **stack_a, t_stack **stack_b, t_stack *cheapest);
+void		handle_pos(t_stack **stack_a, t_stack **stack_b, t_stack *cheapest);
 
 //***PUSH_SWAP_INIT****
 void		set_target_node(t_stack *stack_a, t_stack *stack_b);
